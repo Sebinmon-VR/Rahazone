@@ -3,12 +3,16 @@
   "version": "1.0.0",
   "private": true,
   "description": "Property portfolio & shareholder portal: projects, rental units, contracts, documents, share-based P&L and feedback.",
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "setup": "npm install --prefix server && npm install --prefix client",
     "seed": "npm run seed --prefix server",
     "dev:server": "npm run dev --prefix server",
     "dev:client": "npm run dev --prefix client",
     "build": "npm run build --prefix client",
+    "build:ci": "npm ci --prefix client && npm run build --prefix client && npm ci --omit=dev --prefix server && node -e \"require('fs').rmSync('client/node_modules',{recursive:true,force:true})\"",
     "start": "npm start --prefix server"
   }
 }
