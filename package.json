@@ -1,0 +1,14 @@
+{
+  "name": "rahazone",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Property portfolio & shareholder portal: projects, rental units, contracts, documents, share-based P&L and feedback.",
+  "scripts": {
+    "setup": "npm install --prefix server && npm install --prefix client",
+    "seed": "npm run seed --prefix server",
+    "dev:server": "npm run dev --prefix server",
+    "dev:client": "npm run dev --prefix client",
+    "build": "npm run build --prefix client",
+    "start": "npm start --prefix server"
+  }
+}
