@@ -31,7 +31,27 @@ Default logins (created on first run / by the seed):
 Change the admin password from **Settings** after first login. Override the bootstrap admin with
 `ADMIN_EMAIL` / `ADMIN_PASSWORD`, and always set `JWT_SECRET` in production.
 
-## Database configuration (`server/.env`)
+## Environment variables (`server/.env`)
+
+No `.env` file of any kind is committed; git ignores `.env`, `.env.*` and the template. Create `server/.env`
+by hand from this table.
+
+| Variable | Required | Purpose |
+|----------|:--------:|---------|
+| `DATABASE_URL` | one of | Full SQL Server connection string (ADO or `mssql://` style) |
+| `DB_SERVER`, `DB_NAME` | one of | Server host and database name when not using `DATABASE_URL` |
+| `DB_USER`, `DB_PASSWORD` | with `DB_SERVER` | SQL authentication |
+| `DB_AUTH=aad` | with `DB_SERVER` | Azure AD auth instead of a password (`az login` locally, Managed Identity in Azure) |
+| `JWT_SECRET` | yes in prod | Long random string used to sign login tokens |
+| `ADMIN_EMAIL`, `ADMIN_PASSWORD` | no | First-run admin account (defaults: admin@rahazone.com / admin123) |
+| `PORT` | no | API port, default 4000 |
+| `AZURE_STORAGE_CONNECTION_STRING` | no | Enables Azure Blob Storage for documents; otherwise local disk |
+| `AZURE_STORAGE_CONTAINER` | no | Container name, default `uploads` (created if missing) |
+| `AZURE_STORAGE_PREFIX` | no | Folder inside the container, default `rahazone` |
+| `MAX_UPLOAD_BYTES` | no | Per-file upload limit, default 25 MB |
+| `UPLOAD_DIR` | no | Local folder for documents when Blob is not configured |
+
+## Database configuration
 
 The server creates its tables on first start if they do not exist. All app tables are prefixed `rz_`
 (`rz_users`, `rz_projects`, `rz_project_shares`, `rz_items`, `rz_contracts`, `rz_transactions`,

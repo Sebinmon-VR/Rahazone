@@ -5,11 +5,9 @@ server/uploads/
 *.log
 .DS_Store
 
-# Environment files: never commit real credentials.
-# Only the sanitised template (.env.example) is tracked.
+# Environment files are never committed, including templates.
+# The list of variables is documented in README.md instead.
 .env
 .env.*
 **/.env
 **/.env.*
-!.env.example
-!**/.env.example
